@@ -1,5 +1,6 @@
 // https://api.unsplash.com/photos/?client_id=YOUR_ACCESS_KEY
 const imageContainer = document.getElementById('image-container');
+const loader = document.getElementById('loader');
 const count = 10;
 const apiKey = 'bcuLotAIS1ENB95b5zkzlZZgqMls8OKCzUnobIUdJf4';
 const apiUrl = `https://api.unsplash.com/photos/?client_id=${apiKey}&count=${count}`;
@@ -15,6 +16,7 @@ function imageLoaded() {
     if(imagesLoaded === totalImages) {
         console.log('ready = ', ready);
         ready = true;
+        loader.hidden = true;
     }
 }
 
@@ -52,7 +54,7 @@ getPhotos();
 // on scroll
 window.addEventListener('scroll', (e) => {
     if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
-       ready = false;
+        ready = false;
         getPhotos();
     }
 })
